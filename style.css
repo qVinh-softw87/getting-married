@@ -375,7 +375,7 @@ body {
   gap: var(--gap);
   padding: 8px;
   width: max-content;
-  animation: marquee-scroll 8s linear infinite; /* Tăng tốc độ: 12s -> 8s */
+  animation: marquee-scroll 16s linear infinite; /* Chậm hơn: 8s -> 16s */
   will-change: transform;
 }
 @keyframes marquee-scroll {

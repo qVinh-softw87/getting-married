@@ -246,7 +246,7 @@ function setupLightbox() {
   });
 }
 
-// -------- Showcase: Seamless Ping-Pong Scroll --------
+// -------- Showcase: Seamless Ping-Pong Scroll (CSS Animation fallback / enhancer) --------
 function setupShowcasePingPong() {
   const strips = Array.from(document.querySelectorAll(".marquee"));
   if (strips.length === 0) return;
@@ -254,45 +254,17 @@ function setupShowcasePingPong() {
     const track = el.querySelector(".marquee-track");
     if (!track) return;
 
-    // Duplicate content for seamless loop
+    // Duplicate content for seamless loop (CSS animation needs this)
     if (!track.dataset.looped) {
       const items = Array.from(track.children);
+      // Clone twice to ensure enough width for smooth infinite scroll
+      items.forEach((node) => track.appendChild(node.cloneNode(true)));
       items.forEach((node) => track.appendChild(node.cloneNode(true)));
       track.dataset.looped = "1";
     }
 
-    let rafId = 0;
-    let paused = false;
-    let segment = track.scrollWidth / 2; // Length of one cycle
-
-    const measure = () => {
-      segment = track.scrollWidth / 2;
-      if (segment <= 0) segment = 1;
-      // Keep current position within modulo to prevent jump on resize
-      el.scrollLeft = el.scrollLeft % segment;
-    };
-
-    const base = Math.max(0.9, Math.min(1.8, window.innerWidth / 1100));
-    const speed = 1.6 * base; // px per frame
-
-    const step = () => {
-      if (!paused) {
-        el.scrollLeft += speed;
-        if (el.scrollLeft >= segment) {
-          el.scrollLeft -= segment; // Loop back to start
-        }
-      }
-      rafId = requestAnimationFrame(step);
-    };
-
-    const start = () => {
-      if (!rafId) rafId = requestAnimationFrame(step);
-    };
-
-    // Resume animation on hover (paused removed per request)
-    window.addEventListener("resize", measure);
-    measure();
-    start();
+    // Remove JS-based animation if we are using CSS animation now
+    // Keep this function just for cloning elements
   });
 }
 

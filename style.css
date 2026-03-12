@@ -375,7 +375,7 @@ body {
   gap: var(--gap);
   padding: 8px;
   width: max-content;
-  animation: marquee-scroll 25s linear infinite;
+  animation: marquee-scroll 12s linear infinite; /* Tăng tốc thêm: giảm thời gian từ 18s -> 12s */
   will-change: transform;
 }
 @keyframes marquee-scroll {
@@ -386,10 +386,10 @@ body {
     transform: translateX(calc(-50% - var(--gap) / 2));
   }
 }
-/* Pause on hover */
-.marquee:hover .marquee-track {
+/* Pause on hover disabled per request */
+/* .marquee:hover .marquee-track {
   animation-play-state: paused;
-}
+} */
 
 .marquee .thumb {
   position: relative;

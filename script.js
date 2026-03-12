@@ -82,7 +82,7 @@ function setupHeroSlideshow() {
     );
   });
   let idx = 0;
-  const displayMs = 1700; // Thời gian hiển thị mỗi ảnh (ms)
+  const displayMs = 3200; // Thời gian hiển thị mỗi ảnh (ms) - cho mobile dễ xem hơn
   slides[0].classList.add("active");
   const ensureActive = () => {
     if (!slides.some((s) => s.classList.contains("active"))) {
@@ -149,22 +149,26 @@ function setupFallingHearts() {
   const prefersReduce = window.matchMedia(
     "(prefers-reduced-motion: reduce)",
   ).matches;
+  // Nếu người dùng bật "giảm chuyển động" thì tôn trọng, không chạy hiệu ứng
   if (prefersReduce) return;
 
-  const colors = ["#ffdbe7", "#fff4e5", "#ffffff"];
-  const maxHearts = 60;
+  const colors = ["#ffe3ee", "#ffe9f3", "#fff6ec"];
+  const maxHearts = 24;
   let lastTime = 0;
 
   function makeHeart() {
     if (layer.childElementCount >= maxHearts) return;
     const h = document.createElement("div");
     h.className = "heart";
-    const size = Math.random() * 10 + 4; // 4 - 14px
+    const size = Math.random() * 10 + 8; // 8 - 18px, mảnh & tinh tế hơn
     h.style.setProperty("--size", `${size}px`);
     h.style.left = Math.random() * 100 + "vw";
     h.style.top = -20 + "px";
     h.style.color = colors[(Math.random() * colors.length) | 0];
     h.style.setProperty("--dur", `${2200 + Math.random() * 2400}ms`);
+    // Độ lệch ngang nhẹ để đường rơi cong hiện đại hơn
+    const drift = (Math.random() * 40 - 20).toFixed(1); // -20px đến 20px
+    h.style.setProperty("--dx", `${drift}px`);
     layer.appendChild(h);
     const remove = () => h.remove();
     h.addEventListener("animationend", remove, { once: true });
@@ -172,14 +176,24 @@ function setupFallingHearts() {
     setTimeout(remove, 6000);
   }
 
+  // Tạo một ít trái tim ngay khi vào trang (nhưng không quá nhiều)
+  for (let i = 0; i < 5; i++) makeHeart();
+
+  // Nhẹ nhàng rơi liên tục như mưa cánh hoa
+  const idleInterval = setInterval(() => {
+    if (document.hidden) return;
+    const count = 1; // rơi ít, đều
+    for (let i = 0; i < count; i++) makeHeart();
+  }, 2200);
+
   window.addEventListener(
     "scroll",
     () => {
       const now = performance.now();
       if (now - lastTime < 60) return; // Throttle
       lastTime = now;
-      // Spawn 3-5 hearts on scroll
-      const count = 3 + Math.floor(Math.random() * 3);
+      // Spawn 1–2 hearts khi cuộn (vẫn giữ cảm giác sinh động)
+      const count = 1 + Math.floor(Math.random() * 2);
       for (let i = 0; i < count; i++) makeHeart();
     },
     { passive: true },

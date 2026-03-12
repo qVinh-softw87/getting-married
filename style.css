@@ -201,14 +201,17 @@ body {
   grid-auto-rows: 1fr; /* Equal height cards */
 }
 .details .card h3 {
-  font-size: 1.6rem;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
 }
 .details .card .card-body p {
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   line-height: 1.6;
 }
 .details .card .card-body strong {
-  font-size: 1.6rem;
+  font-size: 1.2rem;
 }
 
 /* Equal height cards on desktop */
@@ -240,10 +243,11 @@ body {
   align-items: start;
   gap: 14px;
   padding: 16px;
-  border-radius: 16px;
-  background: var(--cream);
+  border-radius: 18px;
+  background: var(--white);
   box-shadow: var(--shadow);
   border: 1px solid rgba(191, 160, 106, 0.18);
+  border-left: 4px solid rgba(191, 160, 106, 0.8);
 }
 .card .icon {
   width: 44px;
@@ -268,6 +272,14 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 8px 16px;
+}
+.card .countdown span {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(191, 160, 106, 0.06);
+  border: 1px solid rgba(191, 160, 106, 0.18);
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 .button {
   display: inline-block;
@@ -375,7 +387,7 @@ body {
   gap: var(--gap);
   padding: 8px;
   width: max-content;
-  animation: marquee-scroll 16s linear infinite; /* Chậm hơn: 8s -> 16s */
+  animation: marquee-scroll 25s linear infinite;
   will-change: transform;
 }
 @keyframes marquee-scroll {
@@ -386,10 +398,10 @@ body {
     transform: translateX(calc(-50% - var(--gap) / 2));
   }
 }
-/* Pause on hover disabled per request */
-/* .marquee:hover .marquee-track {
+/* Pause on hover */
+.marquee:hover .marquee-track {
   animation-play-state: paused;
-} */
+}
 
 .marquee .thumb {
   position: relative;
@@ -671,11 +683,10 @@ body {
   background: currentColor;
   transform: rotate(45deg);
   border-radius: 2px;
-  opacity: 0.9;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
-  animation:
-    fall var(--dur, 3500ms) linear forwards,
-    sway 2.6s ease-in-out infinite;
+  opacity: 0.6;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.12));
+  mix-blend-mode: screen;
+  animation: fall var(--dur, 3500ms) linear forwards;
 }
 .heart::before,
 .heart::after {
@@ -696,26 +707,15 @@ body {
 }
 @keyframes fall {
   from {
-    transform: translateY(-10%) rotate(45deg);
+    transform: translate3d(0, -10%, 0) rotate(45deg);
     opacity: 0;
   }
-  10% {
+  20% {
     opacity: 0.95;
   }
   to {
-    transform: translateY(110vh) rotate(45deg);
-    opacity: 0.85;
-  }
-}
-@keyframes sway {
-  0% {
-    transform: translateX(0) rotate(45deg);
-  }
-  50% {
-    transform: translateX(10px) rotate(45deg);
-  }
-  100% {
-    transform: translateX(0) rotate(45deg);
+    transform: translate3d(var(--dx, 0px), 110vh, 0) rotate(45deg);
+    opacity: 0.0;
   }
 }
 
@@ -723,6 +723,12 @@ body {
    Responsive
    ========================= */
 @media (max-width: 639px) {
+  .hero {
+    min-height: 80vh;
+  }
+  .hero-content {
+    padding: 0 16px 8vh;
+  }
   .hero .names {
     font-size: clamp(32px, 12vw, 48px);
   }
@@ -764,11 +770,12 @@ body {
     border-radius: 8px;
   }
   .details .card h3 {
-    font-size: 1.3rem;
+    font-size: 1.15rem;
   }
   .details .card .card-body p,
   .details .card .card-body strong {
-    font-size: 1.3rem;
+    font-size: 1.15rem;
+    line-height: 1.5;
   }
   .countdown {
     gap: 6px 12px;

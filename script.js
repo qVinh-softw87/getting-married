@@ -9,17 +9,16 @@ const WEDDING_ISO_STRING = "2026-04-05T10:30:00+07:00";
 // -------- Preload images for smooth transitions --------
 const PRELOAD_IMAGES = [
   // Hero images
-  "./assets/enhanced/z7612961695278_b883b3ec80c89bccdc587096e13fd682.jpg",
-  "./assets/enhanced/z7612961695281_daf2fa37cc67eaa3a9fa9f826559b5e9.jpg",
-  "./assets/enhanced/z7612961695282_4ae4a2a76796c60458bc18740539b317.jpg",
-  "./assets/enhanced/z7612961695289_867a73cc889bda85d5657017f7a348e5.jpg",
-  "./assets/enhanced/z7612961713109_8689970d2f21bc87230eb63b9501e47d.jpg",
-  "./assets/enhanced/anhcuoi1.jpg",
-  "./assets/enhanced/anhcuoi2.jpg",
-  "./assets/enhanced/anhcuoi3.jpg",
+  "./assets/z7612961695278_b883b3ec80c89bccdc587096e13fd682.jpg",
+  "./assets/z7612961695281_daf2fa37cc67eaa3a9fa9f826559b5e9.jpg",
+  "./assets/z7612961695282_4ae4a2a76796c60458bc18740539b317.jpg",
+  "./assets/z7612961695289_867a73cc889bda85d5657017f7a348e5.jpg",
+  "./assets/z7612961713109_8689970d2f21bc87230eb63b9501e47d.jpg",
+  "./assets/z7613064308128_e073f0589b54697b662863687626c4d2.jpg",
   // Gallery/Closing images
-  "./assets/enhanced/anhcuoi4.jpg",
-  "./assets/enhanced/annhcuoi5.jpg",
+  "./assets/z7612961713109_8689970d2f21bc87230eb63b9501e47d.jpg",
+  "./assets/z7612961695289_867a73cc889bda85d5657017f7a348e5.jpg",
+  "./assets/z7612961695282_4ae4a2a76796c60458bc18740539b317.jpg",
 ];
 function preloadImages(list) {
   list.forEach((src) => {

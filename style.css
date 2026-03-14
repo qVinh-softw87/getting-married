@@ -186,9 +186,21 @@ body {
 .invite {
   text-align: center;
 }
-.invite .lead {
-  font-size: 1.8rem;
+.invite .heading,
+.invite .lead,
+.invite .couple {
+  font-family: "Dancing Script", cursive;
   color: var(--gold);
+  font-weight: 400;
+  opacity: 1;
+  font-size: clamp(1.78rem, 4.2vw, 3.05rem);
+  line-height: 1.15;
+}
+.invite .heading {
+  margin: 0 0 18px;
+}
+.invite .lead {
+  margin: 0 0 20px;
 }
 
 /* =========================
@@ -227,7 +239,10 @@ body {
 
 /* Couple name color in Invite section */
 .invite .couple {
-  color: var(--gold) !important;
+  color: rgba(191, 160, 106, 0.88) !important;
+  margin: 0;
+  font-size: clamp(2.12rem, 4.85vw, 3.46rem);
+  font-weight: 600;
 }
 
 /* Card internal layout for equal height */
@@ -727,7 +742,9 @@ body {
     padding: 0 16px 8vh;
   }
   .hero .names {
-    font-size: clamp(32px, 12vw, 48px);
+    font-size: clamp(26px, 9.4vw, 42px);
+    line-height: 1.02;
+    white-space: nowrap;
   }
   .hero .eyebrow {
     font-size: 1.1rem;
@@ -748,11 +765,13 @@ body {
   .heading {
     font-size: 1.8rem;
   }
-  .invite .lead {
-    font-size: 1.4rem;
+  .invite .heading,
+  .invite .lead,
+  .invite .couple {
+    font-size: clamp(1.72rem, 7.2vw, 2.3rem);
   }
   .invite .couple {
-    font-size: 2.2rem;
+    font-size: clamp(1.98rem, 8.15vw, 2.64rem);
   }
   .details .detail-cards {
     gap: 12px;
@@ -776,6 +795,25 @@ body {
   }
   .countdown {
     gap: 6px 12px;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero-content {
+    padding-inline: 12px;
+  }
+  .hero .names {
+    font-size: clamp(24px, 8.9vw, 36px);
+    letter-spacing: -0.2px;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero-content {
+    padding-inline: 10px;
+  }
+  .hero .names {
+    font-size: 22px;
   }
 }
 
